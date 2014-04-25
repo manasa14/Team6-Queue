@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Manasa Cuddalore and Rabia Rashed">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+  <title>Queue - Student</title>
+
+       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+       <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+       <link rel="stylesheet" type="text/css" href="student.css">
+</head>
+
+<body>
+  <div id='messagesDiv'></div>
+  <input type='text' id='nameInput' placeholder='Name' size=140 style="font-size:15pt;">
+  <input type='text' id='messageInput' placeholder='Question...' size=140 style="font-size:15pt;">
+  <br><br>
+  <button id="LearnMoreBtn">Help</button>
+  <div id="overlay"></div>
+  <div id="popup">
+    <h1>Welcome to Queue<br>
+    Get started: FAQs and the basics</h1>
+    <h2>What is Queue?</h2>
+    <h3>
+      Queue is a second screen application designed to enhance and improve student-professor communication in large classroom environments. It is designed for students to communicate messages through a quick and easy portal.
+    </h3>
+    <h2>How can I register for an account?</h2>
+    <h3>
+      If you are a student, all you need is to register with Queue and you are good to go! <a href="http://scs.ryerson.ca/~mcuddalo/queue.html#slide2">Sign up here!</a> If you are an instructor, please <a href="mailto:team@queue.com?Subject=Create%20my%20class" target="_top">contact us</a> so that we can set up your account.
+    </h3>
+    <h2>Can I edit my post once I have posted it?</h2>
+    <h3>
+      No. Once a message has been posted, it can not be changed or deleted. So, be mindful of what you post.
+    </h3>
+    <h2>How do I report spam?</h2>
+    <h3>
+      Unfortunately, we do not have the report feature implemented at this time. You may <a href="mailto:team@queue.com?Subject=Report:%20Spam" target="_top">write to us</a> to report unwanted messages.
+    </h3>
+    <h2>Why are accounts suspended?</h2>
+    <h3>
+      Accounts are suspended for <a href="http://scs.ryerson.ca/~mcuddalo/tos.html">Terms of Service</a> violations or spam investigation.
+    </h3>
+    <h2>Where can I find out more information about Queues Terms of Service or Privacy Policy?</h2>
+    <h3>
+      You may find Queue's Terms of Service <a href="http://scs.ryerson.ca/~mcuddalo/tos.html">here</a> and Privacy Policy <a href="http://scs.ryerson.ca/~mcuddalo/privacy.html">here</a>.
+    </h3>
+    <button id="CloseBtn">Close</button>
+  </div>
+  <button type="button" onclick="logout()">Logout</button>
+
+  <script>
+  // Help
+  window.onload = function() {
+    document.getElementById("LearnMoreBtn").onclick = function(){
+      var overlay = document.getElementById("overlay");
+      var popup = document.getElementById("popup");
+      overlay.style.display = "block";
+      popup.style.display = "block";
+    };
+
+    document.getElementById("CloseBtn").onclick = function(){
+      var overlay = document.getElementById("overlay");
+      var popup = document.getElementById("popup");
+      overlay.style.display = "none";
+      popup.style.display = "none";      
+    }
+  };
+
+  // Get a reference to the root of the chat data.
+  var messagesRef = new Firebase('https://alefu73qdk2.firebaseio-demo.com/');
+
+  // When the user presses enter on the message input, write the message to firebase.
+  $('#messageInput').keypress(function (e) {
+    if (e.keyCode == 13) {
+      var name = $('#nameInput').val();
+      var text = $('#messageInput').val();
+      messagesRef.push({name:name, text:text});
+      $('#messageInput').val('');
+    }
+  });
+
+  // Add a callback that is triggered for each chat message.
+  messagesRef.limit(10).on('child_added', function (snapshot) {
+    var message = snapshot.val();
+    $('<div/>').text(message.text).prepend($('<em/>')
+      .text(message.name+': ')).appendTo($('#messagesDiv'));
+    $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+  });
+
+  //Logout button
+  function logout()
+  {
+    window.history.back()
+  }
+  </script>
+</body>
+</html>
