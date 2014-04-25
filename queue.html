@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Manasa Cuddalore and Rabia Rashed">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <title>Queue - Just Ask</title>
+  
+  <!-- responsive web page -->
+  <link rel="stylesheet" media="screen" href="stylescroll.css">
+  <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script>
+  // JQUERY FOR SLIDING NAVIGATION
+  $(document).ready(function() {
+    $('a[href*=#]').each(function() {
+     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+       && location.hostname == this.hostname
+       && this.hash.replace(/#/,'') ) {
+       var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+      if ($target) {
+        var targetOffset = $target.offset().top;
+
+        // JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV 
+        $(this).click(function() {
+          $("#nav li a").removeClass("active");
+          $(this).addClass('active');
+          $('html, body').animate({scrollTop: targetOffset}, 1000);
+          return false;
+        });
+      }}
+   });
+  });
+  </script>
+  <script>
+
+  // LOGIN VALIDATION FUNCTION
+  var count = 5;
+  function validate(){
+    var un = document.myform.username.value;
+    var pw = document.myform.password.value;
+    var inun = document.myform.username.value;
+    var inpw = document.myform.password.value;
+    var valid = false;
+    var ivalid = false;
+
+    //For Demo, we decided to hard-code the username/password to show functionality
+    //Each username matches the password below
+    var unArray = ["Student1@ryerson.ca", "Student2@ryerson.ca", "manasa.cuddalore@ryerson.ca", "rabia.rashed@ryerson.ca"]; 
+    var pwArray = ["Password1", "Password2", "Password3", "Password4"]; 
+
+    var inunArray = ["Instructor1@ryerson.ca"];  // for instructor
+    var inpwArray = ["Password"];  // the corresponding passwords;
+    
+    //login for instructor
+    for (var i=0; i <inunArray.length; i++){
+      if ((inun == inunArray[i]) && (inpw == inpwArray[i])){
+        ivalid = true;
+        break;
+      }
+    }
+    if(ivalid)
+    {
+      window.location.href = "http://scs.ryerson.ca/~mcuddalo/instructor.html";
+      return false;
+    }
+
+    //login for student
+    for (var i=0; i < unArray.length; i++){
+      if ((un == unArray[i]) && (pw == pwArray[i])){
+        valid = true;
+        break;
+      }
+    }
+    if (valid){
+      window.location.href = "http://scs.ryerson.ca/~mcuddalo/student.html";
+      return false;
+    }else{
+      var t = " tries";
+      if (count == 1) {t = " try"}
+
+        if (count >= 1) {
+          alert ("Invalid username and/or password.  You have " + count + t + " left.");
+          document.myform.username.value = "";
+          document.myform.password.value = "";
+          setTimeout("document.myform.username.focus()", 10);
+          setTimeout("document.myform.username.select()", 10);
+          count --;
+        }else {
+          alert ("Sorry! You have no more tries left! If you have forgotten your username/password contact us at team@queue.ca");
+          document.myform.username.value = "No more tries allowed!";
+          document.myform.pword.value = "";
+          document.myform.username.disabled = true;
+          document.myform.pword.disabled = true;
+          return false;
+        }
+      }
+    }
+    </script>
+
+    <script>
+    //SIGNUP PAGE PASSOWORD ALERT
+    function myFunction() {
+      var pass1 = document.getElementById("pass1").value;
+      var pass2 = document.getElementById("pass2").value;
+      var ok = true;
+
+      if (pass1 != pass2) {
+        document.getElementById("pass1");
+        document.getElementById("pass2");
+        ok = false;
+
+        alert("Password do not match. Please try again!");
+      } else {
+        alert("Thank you for registering!");
+        window.location.assign("http://scs.ryerson.ca/~mcuddalo/queue.html");
+      }
+      return ok;
+    }
+    </script>
+</head> 
+
+<body>
+
+<!-- HEADER START -->
+<header id="header">
+<div class="content">
+<div id="logo"><a href="./queue.html#slide3"><i>"Queue - Just Ask..."</i></a></div>
+
+<nav id="nav">
+  <ul>
+    <li><a href="#slide1" class="active" title="Log In" >Log In</a></li>
+    <li><a href="#slide2" class="active" title="Sign Up">Sign Up</a></li>
+    <li><a href="#slide3" class="active" title="About">About</a></li>
+    <li><a href="#slide4" class="active" title="Team">Team</a></li>
+  </ul>
+</nav>
+</div>
+</header> 
+<!-- HEADER END -->   
+
+
+
+<!-- SLIDE 1 START -->    
+  <div id="slide1">
+  <div class="content">
+  <div class="logincont">
+
+  <fieldset style="width:340px">
+  <legend>LOG IN</legend>
+       <form name="myform"><br>
+
+           <input type="text" placeholder="E-mail" name="username" style="font-size:20pt;" size =25><br><br>
+           <input type="password" placeholder="Password" name="password" style="font-size:20pt;" size =25><br><br>
+           <div class="button_div">
+            <input type="button" value="Log In" name="Submit" class="buttons" onclick= "validate()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" value="Cancel" class="buttons">Cancel</button>
+            <br><br><br>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<!-- SLIDE 1  ENDS -->
+<!--- SLIDE 2 START -->
+  <div id="slide2">
+    <div class="content">
+      <div class="reg">
+       <fieldset>
+          <legend>SIGN UP</legend>
+          <form class= "registration" action="./queue.html" method="POST" onsubmit="return myFunction()">
+            <h3><br>
+              <input type="text" name="email" style="font-size:20pt;" size =50 placeholder="E-mail"><br><br>
+              <input id="pass1" type="password" name="password" style="font-size:20pt;" size =50 placeholder="Password"><br><br>
+              <input id="pass2" type="password" name="repassword" style="font-size:20pt;" size =50 placeholder="Confirm password">
+            </h3><br><br>
+            <h3><input type="checkbox" name="checkbox" value="agree">  I agree to the <a href="http://scs.ryerson.ca/~mcuddalo/tos.html" target="_blank"> Terms of Service</a> and <a href="http://scs.ryerson.ca/~mcuddalo/privacy.html" target="_blank"> Privacy Policy</a></h3><br>
+           <div class="button_div2">
+            <button type="submit" value="Register" class="buttons" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}">Sign Up</button>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div> 
+<!-- SLIDE 2  ENDS -->
+<!-- SLIDE 3 START -->
+<div id="slide3">
+  <div class="content">
+    <div class="aboutvideo">
+      <iframe width="450" height="450" src="http://www.youtube.com/embed/-v0fDqoOCJw?version=3&#038;rel=1&#038;fs=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent"></iframe>
+    </div>
+    <div class="abouttext">
+      <fieldset>
+        <legend>WHAT IS QUEUE?</legend>
+        <h5>Queue is a second screen application designed to enhance and improve student-professor communication in large classroom environments.
+          Queue allows for students to anonymously and collectively ask their professors questions.
+          The instructor receives notification of classroom discussions on their device and may 
+          choose to either answer questions as they arise, save them for the end, or to go over in more depth later. </h5><br>
+        </fieldset>
+      </div>
+      <div>
+        <br><br>
+        <h4>Compatible with:</h4>
+        <img border="0" src="http://www.anotherwebdesign.com/images/device-icons.png" alt="device" width="300" height="100">
+      </div>
+    </div> 
+  </div>
+<!-- SLIDE 3  ENDS -->
+
+
+<!-- SLIDE 4 START -->
+<div id="slide4">
+  <div class="content">
+    <div class="footercontent">
+      <div class="closing">
+      <h4>For more information, check out our blog:  <a href="http://bluemangroupteam6.wordpress.com" target="_blank"> BlueManGroup</a></h4>
+      <h4>Mobile user can logon using:  <a href="http://scs.ryerson.ca/~mcuddalo/login.html" target="_blank"> Mobile Login</a></h4>
+      <h4>Android and iOS app under construction</h4>
+      <h4> Queue &copy; 2014</h4>
+    </div>
+  </div>
+</div>
+</div>
+<!-- SLIDE 4  ENDS -->
+
+</body>
+</html>
