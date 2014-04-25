@@ -1,0 +1,60 @@
+/* CSS for student and instructor pages */
+
+body { margin-top: auto; margin-left: auto; margin-right: auto; width: 500px; 
+  background:url('http://bluemangroupteam6.files.wordpress.com/2014/03/screen-shot-2014-03-22-at-5-56-48-pm.png') 0% 100%  no-repeat fixed; background-size: 330px 230px;
+  font-size: 24px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #424547; text-align: center;}
+
+#innerDiv { background-color:#FF0000; height:50px; position:absolute; width:50px; display:none; }
+
+h1 { font-size: 18px; font-weight: bold; font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; text-align: center; color: #000000; }
+h2 { font-size: 16px; font-weight: bold; font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; text-align: left;  color: #000000; margin-left: 10px; margin-right: 10px; }
+h3 { font-size: 14px; font-weight: normal;  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; text-align: left;   color: #000000; margin-left: 10px; margin-right: 10px; }
+h4 { font-size: 12px; font-weight: bold;  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; text-align: center;   color: #000000; }
+
+button { background: #fff; font-size:12pt; color: #333333; padding: 6px 14px; border-width: 2px; border-style: solid;
+        border-color: #8DC63F #d8d8d0 #d8d8d0 #8DC63F; text-decoration: none; text-transform:uppercase; }
+
+input { font-size: 24px; }
+
+input[type=text] { color: #424547; border: 1px solid #c2c2c2; background-color: white; }
+
+em { font-style: normal; font-weight: bold; color: black; }
+
+/* Chat */
+#messagesDiv { background-color: white; overflow: auto; height: 500px; width: 99%; padding: 10px; border: 5px solid #58595B;
+  margin-top: 28px; margin-bottom: 5px; text-align: left; }
+
+/*Question*/
+#questionDiv { background-color: white;
+  /* shows only the # of questions that can fit inside the box, rest are hidden*/
+  overflow: hidden; height: 50px; width: 99%; padding: 10px; border: 5px solid #58595B;
+  margin-bottom: 10px; text-align: left; }
+
+#nameInput { width: 26%; }
+
+#messageInput { width: 68%; }
+
+/* Drawing */
+#colorholder { width: 480px; height: 30px; border: 2px solid #424547; margin-top: 5px; margin-left: auto; margin-right: auto; }
+
+#drawing-canvas { border: 3px solid #999; }
+
+/* changges the size of the box*/
+.colorbox { width: 22px; height: 22px; margin: 1px; display: inline-block; border: 3px solid black; }
+
+/* FAQ popup */
+#overlay { display:none; position:fixed; left:0px;  top:0px; width:100%; height:100%; background:#000; opacity:0.5; z-index:99999; }
+
+/* FAQ popup */
+#popup { display:none; position:fixed; left:40%; top:15%;  width:630px; height:610px; margin-top:-75px; margin-left:-150px;
+    background:#FFFFFF; border:2px solid #000; z-index:100000; font-size: 12px; }
+
+/* Digest mode popup */
+#overlay2 { display:none; position:fixed; left:0px;  top:0px; width:100%; height:100%; background:#000; opacity:0.5; z-index:99999; }
+
+/* Digest mode popup */
+#popup2 { display:none; position:fixed; left:43%; top:25%; width:500px; height:150px; margin-top:-75px; margin-left:-150px; background:#FFFFFF;
+    border:2px solid #000; z-index:100000; font-size: 12px; }
+
+/* LOGIN */
+.logincont{ margin: 150px auto; padding: 15px; width: 340px; background: #8DC63F; border-radius: 10px; box-shadow: 7px 7px 3px #94A4A4; }
